@@ -13,3 +13,10 @@ from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
 data_scaled = scaler.fit_transform(data)  # Normalize the data
+
+ # You can use a correlation matrix to see relationships between features
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
+plt.show()
