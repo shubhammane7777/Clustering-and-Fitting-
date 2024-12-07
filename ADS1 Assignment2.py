@@ -63,3 +63,14 @@ plt.title("Line Fitting")
 plt.show()
 
 
+def plot_histogram(data, column_name):
+    plt.hist(data[column_name], bins=10, color='skyblue', edgecolor='black')
+    plt.title(f'Distribution of {column_name}')
+    plt.xlabel(column_name)
+    plt.ylabel('Frequency')
+    plt.show()
+
+# Example usage:
+plot_histogram(data, 'Nonflavanoid_Phenols')  
+
+
