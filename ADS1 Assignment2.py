@@ -48,4 +48,7 @@ plt.scatter(data_scaled[:, 0], data_scaled[:, 1], c=clusters, cmap='viridis')
 plt.title("K-Means Clustering")
 plt.show()
 
+X = data_scaled[:, :-1]  # Example: All columns except the last one
+y = data_scaled[:, -1]   # Example: The last column as the target variable
+
 
