@@ -40,3 +40,12 @@ from sklearn.metrics import silhouette_score
 silhouette_avg = silhouette_score(data_scaled, kmeans.labels_)
 print(f'Silhouette Score: {silhouette_avg}')
 
+optimal_k = 3  # Assume 3 clusters from Elbow Method or silhouette score
+kmeans = KMeans(n_clusters=optimal_k)
+clusters = kmeans.fit_predict(data_scaled)
+
+plt.scatter(data_scaled[:, 0], data_scaled[:, 1], c=clusters, cmap='viridis')
+plt.title("K-Means Clustering")
+plt.show()
+
+
