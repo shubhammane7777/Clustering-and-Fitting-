@@ -51,4 +51,15 @@ plt.show()
 X = data_scaled[:, :-1]  # Example: All columns except the last one
 y = data_scaled[:, -1]   # Example: The last column as the target variable
 
+from sklearn.linear_model import LinearRegression
+
+reg = LinearRegression()
+reg.fit(X, y)
+
+plt.scatter(X[:, 0], y, label="Data")
+plt.plot(X[:, 0], reg.predict(X), color='red', label="Regression Line")
+plt.legend()
+plt.title("Line Fitting")
+plt.show()
+
 
