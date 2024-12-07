@@ -73,4 +73,12 @@ def plot_histogram(data, column_name):
 # Example usage:
 plot_histogram(data, 'Nonflavanoid_Phenols')  
 
+def plot_pie_chart(data, column_name):
+    data[column_name].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['red', 'orange', 'yellow'])
+    plt.title(f'Pie Chart of {column_name}')
+    plt.ylabel('')  # Remove y-label for better aesthetics
+    plt.show()
+
+# Example usage:
+plot_pie_chart(data[:11], 'Ash_Alcanity')  
 
