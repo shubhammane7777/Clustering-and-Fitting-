@@ -34,3 +34,9 @@ plt.title('Elbow Method for Optimal Clusters')
 plt.xlabel('Number of Clusters')
 plt.ylabel('WCSS')
 plt.show()
+
+from sklearn.metrics import silhouette_score
+
+silhouette_avg = silhouette_score(data_scaled, kmeans.labels_)
+print(f'Silhouette Score: {silhouette_avg}')
+
