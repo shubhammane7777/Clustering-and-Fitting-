@@ -20,3 +20,17 @@ import matplotlib.pyplot as plt
 
 sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
 plt.show()
+
+from sklearn.cluster import KMeans
+
+wcss = []
+for k in range(1, 11):
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(data_scaled)
+    wcss.append(kmeans.inertia_)
+
+plt.plot(range(1, 11), wcss)
+plt.title('Elbow Method for Optimal Clusters')
+plt.xlabel('Number of Clusters')
+plt.ylabel('WCSS')
+plt.show()
