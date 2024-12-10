@@ -20,7 +20,7 @@ data.fillna(data.mean(), inplace=True)  # Example: Impute with mean
 scaler = StandardScaler()
 data_scaled = scaler.fit_transform(data)  # Normalize the data
 
- # You can use a correlation matrix to see relationships between features
+ # we can use a correlation matrix to see relationships between features
 
 
 sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
@@ -53,8 +53,8 @@ plt.scatter(data_scaled[:, 0], data_scaled[:, 1], c=clusters, cmap='viridis')
 plt.title("K-Means Clustering")
 plt.show()
 
-X = data_scaled[:, :-1]  # Example: All columns except the last one
-y = data_scaled[:, -1]   # Example: The last column as the target variable
+X = data_scaled[:, :-1]  #All columns except the last one
+y = data_scaled[:, -1]   #The last column as the target variable
 
 
 
@@ -75,7 +75,6 @@ def plot_histogram(data, column_name):
     plt.ylabel('Frequency')
     plt.show()
 
-# Example usage:
 plot_histogram(data, 'Nonflavanoid_Phenols')  
 
 def plot_pie_chart(data, column_name):
@@ -84,6 +83,5 @@ def plot_pie_chart(data, column_name):
     plt.ylabel('')  # Remove y-label for better aesthetics
     plt.show()
 
-# Example usage:
 plot_pie_chart(data[:11], 'Ash_Alcanity')  
 
