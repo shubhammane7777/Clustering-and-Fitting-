@@ -95,12 +95,12 @@ def plot_kmeans_clustering(data, optimal_k, title="K-Means Clustering"):
 
 # Example usage:
 plot_kmeans_clustering(data_scaled, optimal_k=3)
+    
+# Choose features for regression (example: Feature_1 and Feature_2 from dataset)
+X = data_scaled[:, 0].reshape(-1, 1)  # Independent variable
+y = data_scaled[:, 1]  # Dependent variable
 
-X = data_scaled[:, :-1]  #All columns except the last one
-y = data_scaled[:, -1]   #The last column as the target variable
-
-
-
+# Fit and visualize regression line
 def plot_linear_regression(X, y, title="Line Fitting"):
     """
     Fits a Linear Regression model to the data and visualizes the regression line.
@@ -110,14 +110,12 @@ def plot_linear_regression(X, y, title="Line Fitting"):
     - y (np.ndarray or pd.Series): The dependent variable.
     - title (str): The title of the plot. Default is "Line Fitting".
     """
-    # Fit the Linear Regression model
     reg = LinearRegression()
     reg.fit(X, y)
     
-    # Plot the data and regression line
     plt.figure(figsize=(8, 6))
-    plt.scatter(X[:, 0], y, label="Data", color="blue", alpha=0.6)
-    plt.plot(X[:, 0], reg.predict(X), color='red', label="Regression Line")
+    plt.scatter(X, y, label="Data", color="blue", alpha=0.6)
+    plt.plot(X, reg.predict(X), color='red', label="Regression Line")
     plt.title(title, fontsize=14)
     plt.xlabel("Independent Variable", fontsize=12)
     plt.ylabel("Dependent Variable", fontsize=12)
@@ -125,7 +123,6 @@ def plot_linear_regression(X, y, title="Line Fitting"):
     plt.grid(True)
     plt.show()
 
-# Example usage:
 plot_linear_regression(X, y)
 
 
