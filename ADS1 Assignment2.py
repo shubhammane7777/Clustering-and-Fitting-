@@ -67,35 +67,15 @@ def plot_elbow_method(data, max_clusters=10, title="Elbow Method for Optimal Clu
 # Example usage:
 plot_elbow_method(data_scaled)
 
-silhouette_avg = silhouette_score(data_scaled, kmeans.labels_)
-print(f'Silhouette Score: {silhouette_avg}')
-
-def plot_kmeans_clustering(data, optimal_k, title="K-Means Clustering"):
-    """
-    Applies K-Means clustering to the data and visualizes the clusters.
-    
-    Parameters:
-    - data (np.ndarray or pd.DataFrame): The scaled data for clustering.
-    - optimal_k (int): The number of clusters to use for K-Means.
-    - title (str): The title of the scatter plot. Default is "K-Means Clustering".
-    """
-    # Fit K-Means model
-    kmeans = KMeans(n_clusters=optimal_k, random_state=42)  # Set random_state for reproducibility
-    clusters = kmeans.fit_predict(data)
-    
-    # Scatter plot of the clusters
-    plt.figure(figsize=(8, 6))
-    plt.scatter(data[:, 0], data[:, 1], c=clusters, cmap='viridis', edgecolor='k', s=50)
-    plt.title(title, fontsize=14)
-    plt.xlabel("Feature 1", fontsize=12)
-    plt.ylabel("Feature 2", fontsize=12)
-    plt.grid(True)
-    plt.colorbar(label='Cluster')
+def plot_histogram(data, column_name):
+    plt.hist(data[column_name], bins=10, color='skyblue', edgecolor='black')
+    plt.title(f'Distribution of {column_name}')
+    plt.xlabel(column_name)
+    plt.ylabel('Frequency')
     plt.show()
 
-# Example usage:
-plot_kmeans_clustering(data_scaled, optimal_k=3)
-    
+plot_histogram(data, 'Nonflavanoid_Phenols')  
+
 # Choose features for regression (example: Feature_1 and Feature_2 from dataset)
 X = data_scaled[:, 0].reshape(-1, 1)  # Independent variable
 y = data_scaled[:, 1]  # Dependent variable
@@ -125,21 +105,32 @@ def plot_linear_regression(X, y, title="Line Fitting"):
 
 plot_linear_regression(X, y)
 
+silhouette_avg = silhouette_score(data_scaled, kmeans.labels_)
+print(f'Silhouette Score: {silhouette_avg}')
 
-def plot_histogram(data, column_name):
-    plt.hist(data[column_name], bins=10, color='skyblue', edgecolor='black')
-    plt.title(f'Distribution of {column_name}')
-    plt.xlabel(column_name)
-    plt.ylabel('Frequency')
+def plot_kmeans_clustering(data, optimal_k, title="K-Means Clustering"):
+    """
+    Applies K-Means clustering to the data and visualizes the clusters.
+    
+    Parameters:
+    - data (np.ndarray or pd.DataFrame): The scaled data for clustering.
+    - optimal_k (int): The number of clusters to use for K-Means.
+    - title (str): The title of the scatter plot. Default is "K-Means Clustering".
+    """
+    # Fit K-Means model
+    kmeans = KMeans(n_clusters=optimal_k, random_state=42)  # Set random_state for reproducibility
+    clusters = kmeans.fit_predict(data)
+    
+    # Scatter plot of the clusters
+    plt.figure(figsize=(8, 6))
+    plt.scatter(data[:, 0], data[:, 1], c=clusters, cmap='viridis', edgecolor='k', s=50)
+    plt.title(title, fontsize=14)
+    plt.xlabel("Feature 1", fontsize=12)
+    plt.ylabel("Feature 2", fontsize=12)
+    plt.grid(True)
+    plt.colorbar(label='Cluster')
     plt.show()
 
-plot_histogram(data, 'Nonflavanoid_Phenols')  
-
-def plot_pie_chart(data, column_name):
-    data[column_name].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['red', 'orange', 'yellow'])
-    plt.title(f'Pie Chart of {column_name}')
-    plt.ylabel('')  # Remove y-label for better aesthetics
-    plt.show()
-
-plot_pie_chart(data[:11], 'Ash_Alcanity')  
-
+# Example usage:
+plot_kmeans_clustering(data_scaled, optimal_k=3)
+    
